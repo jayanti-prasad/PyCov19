@@ -1,0 +1,13 @@
+README.md
+setup.py
+PyCov19/__init__.py
+PyCov19/_version.py
+PyCov19/beta_models.py
+PyCov19/epd_models.py
+PyCov19/epidemiology.py
+PyCov19/optimizer.py
+PyCov19/reproduction.py
+PyCov19.egg-info/PKG-INFO
+PyCov19.egg-info/SOURCES.txt
+PyCov19.egg-info/dependency_links.txt
+PyCov19.egg-info/top_level.txt
