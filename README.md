@@ -4,13 +4,32 @@
 -  Scicpy : 1.4.1 + 
 -  Numpy : 1.4.1 +
 
+
+## Instllation 
+
+ > `conda  create --name pycov_env python==3.6`
+ > `conda activate pycov_env` 
+ > `pip install PyCov19==1.0.1`
+
+
 ## Uses :
-  At present this package can be used for the followings:
+ > `python`
 
-- To solve a compartmental model (at present only SIR and SIRD) for a given 
-  initial condition and set of tranmission coefficients - beta, gamma and delta.
+ >>> from  PyCov19.epidemiology import Epidemology
+ >>> help(Epidemology)
+
+ >>> E = Epidemology ('SIR','exp')
+ >>> E.initilization (N=1000,I0=10,R0=0)
+ >>> s = E.evolve (160,[0.1,0.24,0.1,0.0,1000])
+ >>> type(s.y)
+ <class 'numpy.ndarray'>
+
+## For SIR model  
+  (t, S(t)) ==  (E.t, s.y[0])
+  (t, I(t)) ==  (E.t, s.y[1])
+  (t, R(t)) ==  (E.t, s.y[2])
+
+  
 
 
 
-
-- To fit the Covid-19 data to a compartmental model with time varying beta.  
