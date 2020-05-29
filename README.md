@@ -11,7 +11,7 @@
 
  > `conda activate pycov_env` 
 
- > `pip install PyCov19==1.0.1`
+ > `pip install -i https://test.pypi.org/simple/ PyCov19==1.0.1`
 
 
 ## Uses :
