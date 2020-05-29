@@ -15,21 +15,21 @@
 
 
 ## Uses :
- > `python`
+ `> python`
 
- >>> from  PyCov19.epidemiology import Epidemology
+ `>>> from  PyCov19.epidemiology import Epidemology`
 
- >>> help(Epidemology)
+ `>>> help(Epidemology)`
 
- >>> E = Epidemology ('SIR','exp')
+ `>>> E = Epidemology ('SIR','exp')`
 
- >>> E.initilization (N=1000,I0=10,R0=0)
+ `>>> E.initilization (N=1000,I0=10,R0=0)`
 
- >>> s = E.evolve (160,[0.1,0.24,0.1,0.0,1000])
+ `>>> s = E.evolve (160,[0.1,0.24,0.1,0.0,1000])`
 
- >>> type(s.y)
+ `>>> type(s.y)`
 
- <class 'numpy.ndarray'>
+ `<class 'numpy.ndarray'>`
 
 ## For SIR model  
 
