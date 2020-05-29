@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="PyCov19", # Replace with your own username
-    version="1.0.0",
+    version="1.0.1",
     author="Jayanti Prasad",
     author_email="prasad.jayanti@gmail.com",
     description="A python package for Covid-19 data",

@@ -7,6 +7,7 @@ PyCov19/epd_models.py
 PyCov19/epidemiology.py
 PyCov19/optimizer.py
 PyCov19/reproduction.py
+PyCov19/tcoeff.py
 PyCov19.egg-info/PKG-INFO
 PyCov19.egg-info/SOURCES.txt
 PyCov19.egg-info/dependency_links.txt

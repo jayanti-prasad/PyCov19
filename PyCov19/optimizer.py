@@ -4,19 +4,84 @@ from PyCov19.epidemiology import  Epidemology
 
   
 class Learner(object):
+
     """
-    This is the main optimier class
+    This is the main optimier class which can be used to fit 
+    Covid-19 data ('confirmed','recovered','deaths') to a SIR or
+    SIRD model with time varying contact rate beta.
+
+    Inputs :
+    ======
+
+    L = Learner (epd_model,beta_model)
+    L.initialize  (starting_point, bounds,**kwargs)
+    optm = L.fit(data)
+
+    Where the input parameters are as follows:
+     1) epd_model (str) : SIR or SIRD 
+     2) beta_model (str) : exp or tanh 
+     3) starting point (tuple) : starting guess for fitting parameters.
+        Arguments are positional so you must follow the order 
+        gamma, beta_0, alpha, mu, alpha : FOR SIR      
+        gamma, delta,  beta_0, alpha, mu, alpha : FOR SIRD      
+     4) bounds (list of tuples) : [(p1_min,p1_max), (p2_min, p2_max) ...]
+        must follow the order as is given in 3)
+     5) kwargs = {'N': population, 'I0': I0, 'R0': R0}  for SIR 
+        see example below.
+  
+     Output:
+     ======
+        optm.x : parameters 
+        optm.fun : loss function 
+        you can print the full object for more detail.
+
+        params = L.params 
+
+     Example :
+     ========= 
+      
+        L = Learner ('SIR','exp')
+        kwargs = {'N': 6.0E07,'I0': I0, 'R0': R0}
+        starting_point = 0.05,0.48,0.01,0.07,1
+        bounds = [(0.01, 1.0),(0.1, 1.0), (0.01, 1.0), (0.01, 1.0), (0, 100)]
+
+        L.initialize  (starting_point, bounds,**kwargs)
+        optm = L.fit(data)
+
+        params = ["%.6f" % x for x in L.params]
+
+        we can make prediction also 
+        ---------------------------- 
+
+        d = L.predict (15)
+        L.t = time 
+ 
+       (a)  For SIR 
+          d.y[0]  = S
+          d.y[1]  = I 
+          d.y[2]  = R  
+       (b) FOR SIRD  
+
+          d.y[0]  = S
+          d.y[1]  = I 
+          d.y[2]  = R  
+          d.y[3]  = D  
+
+    - Jayanti Prasad, May 29, 2020 
+      For more details :  prasad.jayanti@gmail.com 
+
+
     """
     def __init__(self, epd_model, beta_model):
 
         self.epd_model = epd_model   
-        self.E = Epidemology('ode_solver', epd_model, beta_model)
+        self.E = Epidemology(epd_model,beta_model)
   
         self.params = None   
 
     def initialize  (self,starting_point, bounds,**kwargs):
  
-        self.E.set_init (N=kwargs['N'],Y0=kwargs['Y0'])
+        self.E.initilization(**kwargs)
 
         self.starting_point = starting_point 
 
@@ -42,10 +107,10 @@ class Learner(object):
         return optimal 
 
     def loss (self, point):
-        epd_model = self.epd_model.__name__           
 
-        X = list(point)
-        solution = self.E.evolve(self.data.shape[0], X)
+        params = list(point)
+
+        solution = self.E.evolve(self.data.shape[0], params)
 
         y_true = self.data.to_numpy()
         y_pred = solution.y[1:,:].transpose() 
@@ -63,4 +128,3 @@ class Learner(object):
     def predict (self, num_days):
         return  self.E.evolve (self.data.shape[0] + num_days, self.params)
          
-
