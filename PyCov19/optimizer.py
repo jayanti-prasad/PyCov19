@@ -28,6 +28,15 @@ class Learner(object):
         must follow the order as is given in 3)
      5) kwargs = {'N': population, 'I0': I0, 'R0': R0}  for SIR 
         see example below.
+     7) data (pandas data frame) : the columns must match with the initial conditions.
+        For example, in case of SIR model:
+        Initial conditions : I0, R0
+        So the data must have two columns, one for I(t) and another for R(t)
+        For the SIRD case : Initial conditions : I0, R0, D0 
+        and the data have three columns, for I(t), R(t) and D(t).
+     8) We must provide the population of a country for which we want to fit the data.
+  
+
   
      Output:
      ======

@@ -7,14 +7,24 @@
 
 ## Instllation 
 
- > `conda  create --name pycov_env python==3.6`
+### With pip 
 
- > `conda activate pycov_env` 
+ `> conda  create --name pycov_env python==3.6`
 
- > `pip install -i https://test.pypi.org/simple/ PyCov19==1.0.1`
+ `> conda activate pycov_env` 
+
+ `> pip install -i https://test.pypi.org/simple/ PyCov19==1.0.1`
+
+### Without pip 
+
+  `cd PATHTOPYCOV`
+
+  `export PYTHONPATH=PATHTOPYCOC:$PYTHONPATH`
+
+  `cd examples`   
 
 
-## Uses :
+## Uses 1 : Models:
  `> python`
 
  `>>> from  PyCov19.epidemiology import Epidemology`
@@ -31,7 +41,7 @@
 
  `<class 'numpy.ndarray'>`
 
-## For SIR model  
+### For SIR model  
 
   (t, S(t)) ==  (E.t, s.y[0])
 
@@ -39,7 +49,7 @@
 
   (t, R(t)) ==  (E.t, s.y[2])
 
-  
+## Use 2 : Optimization   
 
-
+  - see ../examples/example.py
 
