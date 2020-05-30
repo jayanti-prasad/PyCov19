@@ -51,5 +51,5 @@
 
 ## Use 2 : Optimization   
 
-  - see ../examples/example.py
+  - see [Example](https://github.com/jayanti-prasad/PyCov19/blob/master/examples/example.py)
 
